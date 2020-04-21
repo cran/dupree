@@ -34,7 +34,10 @@ methods::setClass("EnumeratedCodeTable", slots = list(blocks = "tbl_df"))
   }
 }
 
-methods::setValidity("EnumeratedCodeTable", .is_enumerated_code_table)
+methods::setValidity(
+  "EnumeratedCodeTable",
+  function(object) .is_enumerated_code_table(object)
+)
 
 ###############################################################################
 
@@ -54,10 +57,8 @@ methods::setValidity("EnumeratedCodeTable", .is_enumerated_code_table)
 methods::setMethod(
   "initialize",
   "EnumeratedCodeTable",
-  # nolint start
   function(.Object, blocks = NULL, ...) {
     .Object <- methods::callNextMethod(...)
-    # nolint end
 
     default_code_table <- tibble::tibble(
       file = character(0), block = integer(0), start_line = integer(0),
@@ -96,9 +97,12 @@ methods::setMethod(
 #'
 #' @noRd
 #'
+
+# nocov start
 methods::setGeneric("find_best_matches", function(x, ...) {
   methods::standardGeneric("find_best_matches")
 })
+# nocov end
 
 #' `find_best_matches` between code blocks in an `EnumeratedCodeTable`
 #'

@@ -1,3 +1,24 @@
+# dupree 0.3.0
+
+## Breaking changes
+
+* `dupree()`, `dupree_package()` and `dupree_dir()` return an object of class
+  `dups`, rather than a data-frame. Methods to convert to data.frame / tibble
+  are provided though (#60, @russHyde)
+
+## Minor changes and bug-fixes
+
+* Changed the default `min_block_size` to 40 throughout (#68, @russHyde)
+
+* Rewrote a test-helper function that compares two list-column-containing
+  tibbles: necessitated by a change in dplyr=1.0 (#65, @russHyde)
+
+* `dupree_package()` and `dupree_dir()` fail early when provided a non-existing
+  path (#67, @russHyde)
+
+* `dupree_package()` asserts that a path has a DESCRIPTION and an R/ subdir
+  present (#57, @russHyde)
+
 # dupree 0.2.0
 
 * lintr dependence pinned to lintr=2.0.0 so that non-R-codeblocks and empty R
